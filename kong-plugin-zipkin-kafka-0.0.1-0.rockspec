@@ -1,7 +1,7 @@
 package = "kong-plugin-zipkin-kafka"
 version = "0.0.1-0"
 source = {
-   url = "git://github.com/HefeiJoe/kong-plugin-zipkin-kafka",
+   url = "https://github.com/HefeiJoe/kong-plugin-zipkin-kafka.git"",
    tag = "0.0.1"
 }
 description = {

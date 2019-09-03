@@ -1,1 +1,2 @@
-# kong-plugin-zipkin-kafka
+Kong plugin zipkin-kafka
+====================
