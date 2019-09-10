@@ -10,8 +10,8 @@ description = {
    license = "Apache 2.0"
 }
 dependencies = {
-   "lua >= 5.1",
-   "lua-resty-kafka >= 0.06"
+   "lua >= 5.1";
+   "lua-resty-kafka >= 0.06";
    "lua-cjson";
    "kong >= 0.15";
    "opentracing >= 0.0.2";
