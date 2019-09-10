@@ -19,11 +19,7 @@ end
 return {
 	name = "zipkin-kafka",
 	fields = {
-		{ run_on = typedefs.run_on { default = "all" } },
-		{ config = {
-				type = "record",
-				fields = {
-					{ bootstrap_servers = { type = "array", required = true, func = check_bootstrap_servers } },
+	  { bootstrap_servers = { type = "array", required = true, func = check_bootstrap_servers } },
           { topic = { type = "string", default = "zipkin", required = true } },
           { timeout = { type = "number", default = 10000 } },
           { keepalive = { type = "number", default = 60000 } },
@@ -37,12 +33,8 @@ return {
           { producer_async_flush_timeout = { type = "number", default = 1000 } },
           { producer_async_buffering_limits_messages_in_memory = { type = "number", default = 50000 } },
           { uuid = { type = "string", default = utils.uuid() } },
-					{ sample_ratio = { type = "number",
-					                   default = 0.001,
-					                   between = { 0, 1 } } },
-                                        { default_service_name = { type = "string", default = nil } },
-					{ include_credential = { type = "boolean", required = true, default = true } },
-				},
-		}, },
-	},
+	  { sample_ratio = { type = "number", default = 0.001, between = { 0, 1 } } },
+          { default_service_name = { type = "string", default = nil } },
+	  { include_credential = { type = "boolean", required = true, default = true } }
+	}
 }
