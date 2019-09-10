@@ -6,12 +6,15 @@ source = {
 }
 description = {
    summary = "",
-   homepage = "https://github.com/HefeiJoe/kong-plugin-zipkin-kafka.git",
+   homepage = "https://github.com/HefeiJoe/kong-plugin-zipkin-kafka",
    license = "Apache 2.0"
 }
 dependencies = {
    "lua >= 5.1",
    "lua-resty-kafka >= 0.06"
+	"lua-cjson";
+	"kong >= 0.15";
+	"opentracing >= 0.0.2";
 }
 build = {
    type = "builtin",
