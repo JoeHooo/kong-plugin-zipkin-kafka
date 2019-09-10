@@ -1,4 +1,5 @@
 local types = require "kong.plugins.zipkin-kafka.types"
+local typedefs = require "kong.db.schema.typedefs"
 local utils = require "kong.tools.utils"
 
 --- Validates value of `bootstrap_servers` field.
