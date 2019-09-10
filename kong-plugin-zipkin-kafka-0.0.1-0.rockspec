@@ -12,9 +12,9 @@ description = {
 dependencies = {
    "lua >= 5.1",
    "lua-resty-kafka >= 0.06"
-	"lua-cjson";
-	"kong >= 0.15";
-	"opentracing >= 0.0.2";
+   "lua-cjson";
+   "kong >= 0.15";
+   "opentracing >= 0.0.2";
 }
 build = {
    type = "builtin",
