@@ -1,5 +1,5 @@
 --local resty_http = require "resty.http"
-local kafka_producers = require "kong.plugins.kafka-zipkin.producers"
+local kafka_producers = require "kong.plugins.zipkin-kafka.producers"
 local to_hex = require "resty.string".to_hex
 local cjson = require "cjson".new()
 cjson.encode_number_precision(16)
