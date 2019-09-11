@@ -1,4 +1,3 @@
---local resty_http = require "resty.http"
 local kafka_producers = require "kong.plugins.zipkin-kafka.producers".new
 local to_hex = require "resty.string".to_hex
 local cjson = require "cjson".new()
@@ -18,10 +17,6 @@ local function new_zipkin_reporter(conf)
   config = conf
   local bootstrap_servers = conf.bootstrap_servers
   local default_service_name = conf.default_service_name
-	--assert(type(http_endpoint) == "string", "invalid http endpoint")
-  ---for v in pairs(bootstrap_servers) do
-   --- assert(type(v) == "string", "invalid bootstrap servers")
- --- end
 
 return setmetatable({
                 default_service_name = default_service_name;
