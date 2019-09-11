@@ -1,5 +1,5 @@
 --local resty_http = require "resty.http"
-local kafka_producers = require "kong.plugins.zipkin-kafka.producers"
+local kafka_producers = require "kong.plugins.zipkin-kafka.producers".new
 local to_hex = require "resty.string".to_hex
 local cjson = require "cjson".new()
 cjson.encode_number_precision(16)
@@ -137,7 +137,7 @@ function zipkin_reporter_methods:flush(conf)
     kong.log.notice("creating a new Kafka Producer for cache key: ", cache_key)
 ]]
     local err
-    producer, err = kafka_producers.create_producer(self.conf)
+    producer, err = kafka_producers(self.conf)
     if not producer then
       ngx.log(ngx.ERR, "[zipkin-kafka] failed to create a Kafka Producer for a given configuration: ", err)
       return
