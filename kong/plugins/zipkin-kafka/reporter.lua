@@ -160,12 +160,6 @@ function zipkin_reporter_methods:flush(conf)
 		body = pending_spans;
 	})]]
 	-- TODO: on failure, retry?
-	if not res then
-		return nil, "failed to request: " .. err
-	elseif res.status < 200 or res.status >= 300 then
-		return nil, "failed: " .. res.status .. " " .. res.reason
-	end
-	return true
 end
 
 return {
