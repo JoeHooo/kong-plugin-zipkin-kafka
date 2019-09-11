@@ -1,7 +1,15 @@
 local types = require "kong.plugins.zipkin-kafka.types"
 local typedefs = require "kong.db.schema.typedefs"
 local utils = require "kong.tools.utils"
+local Schema = require("kong.db.schema")
 
+local typedefs_zipkin = {}
+
+typedefs_zipkin.bootstrap_servers = Schema.define {
+  type = "string",
+  unique = true,
+  custom_validator = check_bootstrap_servers
+}
 --- Validates value of `bootstrap_servers` field.
 local function check_bootstrap_servers(values)
   if values and 0 < #values then
@@ -23,7 +31,7 @@ return {
 	  { config = {
               type = "record",
 	      fields = {
-		{ bootstrap_servers = { type = "array", required = true, elements = typedefs.tag } },
+		{ bootstrap_servers = { type = "array", required = true, elements = typedefs_zipkin.bootstrap_servers } },
                 { topic = { type = "string", default = "zipkin", required = true } },
                 { timeout = { type = "number", default = 10000 } },
                 { keepalive = { type = "number", default = 60000 } },
