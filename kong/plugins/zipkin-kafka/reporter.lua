@@ -3,7 +3,7 @@ local kafka_producers = require "kong.plugins.zipkin-kafka.producers".new
 local to_hex = require "resty.string".to_hex
 local cjson = require "cjson".new()
 cjson.encode_number_precision(16)
-
+local config = {}
 local mt_cache = { __mode = "k" }
 local producers_cache = setmetatable({}, mt_cache)
 
@@ -16,7 +16,7 @@ local zipkin_reporter_mt = {
 local function new_zipkin_reporter(conf)
 	--local http_endpoint = conf.http_endpoint
   kong.log.notice("conf111***: ", conf)
-  local conf = conf
+  config = conf
   local bootstrap_servers = conf.bootstrap_servers
   local default_service_name = conf.default_service_name
 	--assert(type(http_endpoint) == "string", "invalid http endpoint")
@@ -137,9 +137,10 @@ function zipkin_reporter_methods:flush(conf)
   if not producer then
     kong.log.notice("creating a new Kafka Producer for cache key: ", cache_key)
 ]]
-    kong.log.notice("conf222***: ", self.conf)
+    kong.log.notice("conf222***: ", config)
+    kong.log.notice("conf333***: ", conf)
     local err
-    producer, err = kafka_producers(self.conf)
+    producer, err = kafka_producers(config)
     if not producer then
       ngx.log(ngx.ERR, "[zipkin-kafka] failed to create a Kafka Producer for a given configuration: ", err)
       return
