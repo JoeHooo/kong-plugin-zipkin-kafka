@@ -15,6 +15,7 @@ local zipkin_reporter_mt = {
 
 local function new_zipkin_reporter(conf)
 	--local http_endpoint = conf.http_endpoint
+  kong.log.notice("conf111***: ", conf)
   local conf = conf
   local bootstrap_servers = conf.bootstrap_servers
   local default_service_name = conf.default_service_name
@@ -136,6 +137,7 @@ function zipkin_reporter_methods:flush(conf)
   if not producer then
     kong.log.notice("creating a new Kafka Producer for cache key: ", cache_key)
 ]]
+    kong.log.notice("conf222***: ", self.conf)
     local err
     producer, err = kafka_producers(self.conf)
     if not producer then
