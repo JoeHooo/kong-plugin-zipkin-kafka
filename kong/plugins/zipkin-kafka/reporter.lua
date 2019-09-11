@@ -150,7 +150,8 @@ function zipkin_reporter_methods:flush(conf)
   if not ok then
     ngx.log(ngx.ERR, "[zipkin-kafka] failed to send a message on topic ", config.topic, ": ", err)
     return
-  return ture
+  if ok
+    return true
   end
 end
 
