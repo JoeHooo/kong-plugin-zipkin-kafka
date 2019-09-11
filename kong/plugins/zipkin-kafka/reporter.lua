@@ -15,7 +15,7 @@ local zipkin_reporter_mt = {
 
 local function new_zipkin_reporter(conf)
 	--local http_endpoint = conf.http_endpoint
-  local.conf = conf
+  local conf = conf
   local bootstrap_servers = conf.bootstrap_servers
   local default_service_name = conf.default_service_name
 	--assert(type(http_endpoint) == "string", "invalid http endpoint")
