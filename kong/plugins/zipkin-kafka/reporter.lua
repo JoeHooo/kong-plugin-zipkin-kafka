@@ -116,7 +116,7 @@ function zipkin_reporter_methods:report(span)
 	self.pending_spans_n = i
 end
 
-function zipkin_reporter_methods:flush()
+function zipkin_reporter_methods:flush(conf)
 	if self.pending_spans_n == 0 then
 		return true
 	end
