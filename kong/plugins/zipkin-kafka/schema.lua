@@ -23,7 +23,7 @@ return {
 	  { config = {
               type = "record",
 	      fields = {
-		{ bootstrap_servers = { type = "array", required = true, func = check_bootstrap_servers } },
+		{ bootstrap_servers = { type = "array", required = true, custom_validator = check_bootstrap_servers } },
                 { topic = { type = "string", default = "zipkin", required = true } },
                 { timeout = { type = "number", default = 10000 } },
                 { keepalive = { type = "number", default = 60000 } },
