@@ -150,16 +150,8 @@ function zipkin_reporter_methods:flush(conf)
   if not ok then
     ngx.log(ngx.ERR, "[zipkin-kafka] failed to send a message on topic ", config.topic, ": ", err)
     return
+  return ture
   end
---[[	local httpc = resty_http.new()
-	local res, err = httpc:request_uri(self.http_endpoint, {
-		method = "POST";
-		headers = {
-			["content-type"] = "application/json";
-		};
-		body = pending_spans;
-	})]]
-	-- TODO: on failure, retry?
 end
 
 return {
