@@ -7,13 +7,6 @@ cjson.encode_number_precision(16)
 local mt_cache = { __mode = "k" }
 local producers_cache = setmetatable({}, mt_cache)
 
---- Computes a cache key for a given configuration.
-local function cache_key(conf)
-  -- here we rely on validation logic in schema that automatically assigns a unique id
-  -- on every configuartion update
-  return conf.uuid
-end
-
 local zipkin_reporter_methods = {}
 local zipkin_reporter_mt = {
 	__name = "kong.plugins.zipkin-kafka.reporter";
@@ -36,6 +29,13 @@ return setmetatable({
 		pending_spans = {};
 		pending_spans_n = 0;
 	}, zipkin_reporter_mt)
+end
+
+--- Computes a cache key for a given configuration.
+local function cache_key(conf)
+  -- here we rely on validation logic in schema that automatically assigns a unique id
+  -- on every configuartion update
+  return conf.uuid
 end
 
 local span_kind_map = {
