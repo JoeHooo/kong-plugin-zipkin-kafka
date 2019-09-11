@@ -31,12 +31,12 @@ return setmetatable({
 	}, zipkin_reporter_mt)
 end
 
---- Computes a cache key for a given configuration.
+--[[ --- Computes a cache key for a given configuration.
 local function cache_key(conf)
   -- here we rely on validation logic in schema that automatically assigns a unique id
   -- on every configuartion update
   return conf.uuid
-end
+end]]
 
 local span_kind_map = {
 	client = "CLIENT";
@@ -125,7 +125,7 @@ function zipkin_reporter_methods:flush(conf)
 	self.pending_spans = {}
 	self.pending_spans_n = 0
 
-  local cache_key = cache_key(conf)
+  --[[ local cache_key = cache_key(conf)
   if not cache_key then
     ngx.log(ngx.ERR, "[zipkin-kafka] cannot log a given request because configuration has no uuid")
     return
@@ -143,7 +143,7 @@ function zipkin_reporter_methods:flush(conf)
     end
 
     producers_cache[cache_key] = producer
-  end
+  end]]
 
   local ok, err = producer:send(conf.topic, nil, pending_spans)
   if not ok then
