@@ -16,12 +16,12 @@ function ZipkinLogHandler.new_tracer(conf)
 	return tracer
 end
 
-local function log(premature, reporter)
+local function log(premature, conf, reporter)
 	if premature then
 		return
 	end
 
-	local ok, err = reporter:flush()
+	local ok, err = reporter:flush(conf)
 	if not ok then
 		kong.log.err("reporter flush ", err)
 		return
