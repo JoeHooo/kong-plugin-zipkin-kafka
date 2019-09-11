@@ -15,7 +15,6 @@ local zipkin_reporter_mt = {
 
 local function new_zipkin_reporter(conf)
 	--local http_endpoint = conf.http_endpoint
-  kong.log.notice("conf111***: ", conf)
   config = conf
   local bootstrap_servers = conf.bootstrap_servers
   local default_service_name = conf.default_service_name
@@ -137,8 +136,6 @@ function zipkin_reporter_methods:flush(conf)
   if not producer then
     kong.log.notice("creating a new Kafka Producer for cache key: ", cache_key)
 ]]
-    kong.log.notice("conf222***: ", config)
-    kong.log.notice("conf333***: ", conf)
     local err
     producer, err = kafka_producers(config)
     if not producer then
@@ -149,9 +146,9 @@ function zipkin_reporter_methods:flush(conf)
     producers_cache[cache_key] = producer
   end]]
 
-  local ok, err = producer:send(conf.topic, nil, pending_spans)
+  local ok, err = producer:send(config.topic, nil, pending_spans)
   if not ok then
-    ngx.log(ngx.ERR, "[zipkin-kafka] failed to send a message on topic ", conf.topic, ": ", err)
+    ngx.log(ngx.ERR, "[zipkin-kafka] failed to send a message on topic ", config.topic, ": ", err)
     return
   end
 --[[	local httpc = resty_http.new()
