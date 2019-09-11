@@ -3,6 +3,7 @@ local zipkin_codec = require "kong.plugins.zipkin-kafka.codec"
 local new_random_sampler = require "kong.plugins.zipkin-kafka.random_sampler".new
 local new_zipkin_reporter = require "kong.plugins.zipkin-kafka.reporter".new
 local OpenTracingHandler = require "kong.plugins.zipkin-kafka.opentracing"
+local reporter = require "kong.plugins.zipkin-kafka.reporter"
 
 -- Zipkin plugin derives from general opentracing one
 local ZipkinLogHandler = OpenTracingHandler:extend()
