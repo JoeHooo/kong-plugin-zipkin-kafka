@@ -15,8 +15,9 @@ local zipkin_reporter_mt = {
 
 local function new_zipkin_reporter(conf)
 	--local http_endpoint = conf.http_endpoint
+  local.conf = conf
   local bootstrap_servers = conf.bootstrap_servers
-	local default_service_name = conf.default_service_name
+  local default_service_name = conf.default_service_name
 	--assert(type(http_endpoint) == "string", "invalid http endpoint")
   ---for v in pairs(bootstrap_servers) do
    --- assert(type(v) == "string", "invalid bootstrap servers")
@@ -136,7 +137,7 @@ function zipkin_reporter_methods:flush(conf)
     kong.log.notice("creating a new Kafka Producer for cache key: ", cache_key)
 ]]
     local err
-    producer, err = kafka_producers.new(conf)
+    producer, err = kafka_producers.new(self.conf)
     if not producer then
       ngx.log(ngx.ERR, "[zipkin-kafka] failed to create a Kafka Producer for a given configuration: ", err)
       return
