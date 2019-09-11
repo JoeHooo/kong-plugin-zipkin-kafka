@@ -134,14 +134,14 @@ function zipkin_reporter_methods:flush(conf)
   local producer = producers_cache[cache_key]
   if not producer then
     kong.log.notice("creating a new Kafka Producer for cache key: ", cache_key)
-
+]]
     local err
     producer, err = kafka_producers.new(conf)
     if not producer then
       ngx.log(ngx.ERR, "[zipkin-kafka] failed to create a Kafka Producer for a given configuration: ", err)
       return
     end
-
+  --[[
     producers_cache[cache_key] = producer
   end]]
 
