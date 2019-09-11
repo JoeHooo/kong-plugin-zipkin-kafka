@@ -4,6 +4,7 @@ local ipairs = ipairs
 
 --- Creates a new Kafka Producer.
 local function create_producer(conf)
+  kong.log.err("conf***************: ", conf)
   local broker_list = {}
   for idx, value in ipairs(conf.bootstrap_servers) do
     local server = types.bootstrap_server(value)
