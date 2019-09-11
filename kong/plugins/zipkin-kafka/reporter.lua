@@ -149,10 +149,9 @@ function zipkin_reporter_methods:flush(conf)
   local ok, err = producer:send(config.topic, nil, pending_spans)
   if not ok then
     ngx.log(ngx.ERR, "[zipkin-kafka] failed to send a message on topic ", config.topic, ": ", err)
-    return
-  if ok
-    return true
+    return nil
   end
+  return true
 end
 
 return {
