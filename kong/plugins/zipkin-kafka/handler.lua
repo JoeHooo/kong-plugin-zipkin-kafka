@@ -36,7 +36,7 @@ function ZipkinLogHandler:log(conf)
 	local zipkin_reporter = tracer.reporter -- XXX: not guaranteed by opentracing-lua?
 	local ok, err = ngx.timer.at(0, log, zipkin_reporter)
 	i = i+1
-	kong.log.err("handler.lua*****************************: ", err)
+	kong.log.err("handler.lua*****************************: ", i)
 	if not ok then
 		kong.log.err("failed to create timer: ", err)
 	end
