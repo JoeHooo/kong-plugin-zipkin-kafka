@@ -10,8 +10,8 @@ Kong >= 0.14.x
 Recommended:
 
 ```
-$ git clone https://github.com/HefeiJoe/kong-plugin-zipkin-kafka.git /path/to/kong/plugins/kong-plugin-kafka-log
-$ cd /path/to/kong/plugins/kong-plugin-kafka-log
+$ git clone https://github.com/HefeiJoe/kong-plugin-zipkin-kafka.git /path/to/kong/plugins/kong-plugin-zipkin-kafka
+$ cd /path/to/kong/plugins/kong-plugin-zipkin-kafka
 $ luarocks make *.rockspec
 $ export KONG_PLUGINS=bundled,zipkin-kafka
 $ kong reload
