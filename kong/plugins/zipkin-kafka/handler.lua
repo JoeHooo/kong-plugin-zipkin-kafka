@@ -4,8 +4,8 @@ local new_random_sampler = require "kong.plugins.zipkin-kafka.random_sampler".ne
 local new_zipkin_reporter = require "kong.plugins.zipkin-kafka.reporter".new
 local OpenTracingHandler = require "kong.plugins.zipkin-kafka.opentracing"
 local reporter = require "kong.plugins.zipkin-kafka.reporter"
+local i = 0
 
--- Zipkin plugin derives from general opentracing one
 local ZipkinLogHandler = OpenTracingHandler:extend()
 ZipkinLogHandler.VERSION = "scm"
 ZipkinLogHandler.PRIORITY = 10000
@@ -35,6 +35,8 @@ function ZipkinLogHandler:log(conf)
 	local tracer = self:get_tracer(conf)
 	local zipkin_reporter = tracer.reporter -- XXX: not guaranteed by opentracing-lua?
 	local ok, err = ngx.timer.at(0, log, zipkin_reporter)
+	i = i+1
+	kong.log.err("handler.lua*****************************: ", err)
 	if not ok then
 		kong.log.err("failed to create timer: ", err)
 	end
