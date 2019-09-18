@@ -205,7 +205,7 @@ function OpenTracingHandler:log(conf)
 	local opentracing = self:get_context(conf, ctx)
 	local request_span = opentracing.request_span
 
-	-[[local proxy_span = opentracing.proxy_span
+	--[[local proxy_span = opentracing.proxy_span
 	if not proxy_span then
 		proxy_span = request_span:start_child_span("kong.proxy", now)
 		opentracing.proxy_span = proxy_span
@@ -269,7 +269,7 @@ function OpenTracingHandler:log(conf)
 		request_span:set_tag("kong.credential", ctx.authenticated_credential.id)
 	end
 	request_span:set_tag("kong.node.id", kong.node.get_id())
-	-[[if ctx.service and ctx.service.id then
+	--[[if ctx.service and ctx.service.id then
 		proxy_span:set_tag("kong.service", ctx.service.id)
 		if ctx.route and ctx.route.id then
 			proxy_span:set_tag("kong.route", ctx.route.id)
