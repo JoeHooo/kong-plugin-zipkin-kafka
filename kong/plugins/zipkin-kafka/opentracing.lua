@@ -92,7 +92,7 @@ if subsystem == "http" then
 		}
 	end
 
-	function OpenTracingHandler:access(conf)
+	--[[function OpenTracingHandler:access(conf)
 		OpenTracingHandler.super.access(self, conf)
 
 		local ctx = ngx.ctx
@@ -153,7 +153,7 @@ if subsystem == "http" then
 
 			opentracing.body_filter_span = opentracing.proxy_span:start_child_span("kong.body_filter", now)
 		end
-	end
+	end]]
 elseif subsystem == "stream" then
 	function OpenTracingHandler:initialise_request(conf, ctx)
 		local tracer = self:get_tracer(conf)
