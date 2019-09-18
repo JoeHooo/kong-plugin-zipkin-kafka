@@ -58,7 +58,7 @@ if subsystem == "http" then
 	function OpenTracingHandler:initialise_request(conf, ctx)
 		local tracer = self:get_tracer(conf)
 		local req = kong.request
-		local wire_context = tracer:extract("http_headers", req.get_headers()) -- could be nil
+		--local wire_context = tracer:extract("http_headers", req.get_headers()) -- could be nil
 		local method, url
 		local path_with_query = req.get_path_with_query()
 		if path_with_query ~= "" then
@@ -81,14 +81,14 @@ if subsystem == "http" then
 		})
 		ctx.opentracing = {
 			tracer = tracer;
-			wire_context = wire_context;
+			--wire_context = wire_context;
 			request_span = request_span;
-			rewrite_span = nil;
-			access_span = nil;
-			proxy_span = nil;
-			header_filter_span = nil;
-			header_filter_finished = false;
-			body_filter_span = nil;
+			--rewrite_span = nil;
+			--access_span = nil;
+			--proxy_span = nil;
+			--header_filter_span = nil;
+			--header_filter_finished = false;
+			--body_filter_span = nil;
 		}
 	end
 
