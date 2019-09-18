@@ -205,7 +205,7 @@ function OpenTracingHandler:log(conf)
 	local opentracing = self:get_context(conf, ctx)
 	local request_span = opentracing.request_span
 
-	local proxy_span = opentracing.proxy_span
+	-[[local proxy_span = opentracing.proxy_span
 	if not proxy_span then
 		proxy_span = request_span:start_child_span("kong.proxy", now)
 		opentracing.proxy_span = proxy_span
@@ -257,7 +257,7 @@ function OpenTracingHandler:log(conf)
 
 	if opentracing.body_filter_span then
 		opentracing.body_filter_span:finish(proxy_end)
-	end
+	end]]
 
 	if subsystem == "http" then
 		request_span:set_tag("http.status_code", kong.response.get_status())
@@ -269,7 +269,7 @@ function OpenTracingHandler:log(conf)
 		request_span:set_tag("kong.credential", ctx.authenticated_credential.id)
 	end
 	request_span:set_tag("kong.node.id", kong.node.get_id())
-	if ctx.service and ctx.service.id then
+	-[[if ctx.service and ctx.service.id then
 		proxy_span:set_tag("kong.service", ctx.service.id)
 		if ctx.route and ctx.route.id then
 			proxy_span:set_tag("kong.route", ctx.route.id)
@@ -280,7 +280,7 @@ function OpenTracingHandler:log(conf)
 	elseif ctx.api and ctx.api.id then
 		proxy_span:set_tag("kong.api", ctx.api.id)
 	end
-	proxy_span:finish(proxy_end)
+	proxy_span:finish(proxy_end)]]
 	request_span:finish(now)
 end
 
