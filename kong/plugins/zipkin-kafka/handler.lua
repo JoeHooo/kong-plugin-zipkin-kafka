@@ -22,7 +22,6 @@ local function log(premature, reporter)
 	end
 
 	local ok, err = reporter:flush()
-	kong.log.notice("reporter flush ","#####")
 	if not ok then
 		kong.log.err("reporter flush ", err)
 		return
@@ -35,7 +34,6 @@ function ZipkinLogHandler:log(conf)
 	local tracer = self:get_tracer(conf)
 	local zipkin_reporter = tracer.reporter -- XXX: not guaranteed by opentracing-lua?
 	local ok, err = ngx.timer.at(0, log, zipkin_reporter)
-	kong.log.notice("failed to create timer: ","*****")
 	if not ok then
 		kong.log.err("failed to create timer: ", err)
 	end
