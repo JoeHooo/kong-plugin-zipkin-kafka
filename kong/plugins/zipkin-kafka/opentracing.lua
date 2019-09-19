@@ -70,14 +70,6 @@ if subsystem == "http" then
 		local request_span = tracer:start_span("kong.request", {
 			child_of = wire_context;
 			start_timestamp = ngx.req.start_time(),
-			component = "kong";
-			["span.kind"] = "server";
-			["http.method"] = method;
-			["http.url"] = url;
-			[ip_tag(forwarded_ip)] = forwarded_ip;
-			["peer.port"] = kong.client.get_forwarded_port();
-			["http.status_code"] = kong.response.get_status();
-			status_code = kong.response.get_status();
 			tags = {
 				component = "kong";
 				["span.kind"] = "server";
