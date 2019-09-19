@@ -76,7 +76,8 @@ if subsystem == "http" then
 			["http.url"] = url;
 			[ip_tag(forwarded_ip)] = forwarded_ip;
 			["peer.port"] = kong.client.get_forwarded_port();
-			request_span:set_tag("http.status_code", kong.response.get_status());
+			["http.status_code"] = kong.response.get_status();
+			status_code = kong.response.get_status();
 			tags = {
 				component = "kong";
 				["span.kind"] = "server";
